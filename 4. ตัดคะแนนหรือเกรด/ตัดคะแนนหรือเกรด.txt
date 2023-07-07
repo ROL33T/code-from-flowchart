@@ -9,13 +9,33 @@ func print(a ...interface{}) {
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
+
+func calculateGrade(score int) string {
+	var grade string
+
+	if score >= 90 {
+		grade = "A"
+	} else if score >= 85 && score <= 90 {
+		grade = "B+"
+	} else if score >= 80 && score <= 85 {
+		grade = "B"
+	} else if score >= 75 && score <= 80 {
+		grade = "C+"
+	} else if score >= 70 && score <= 75 {
+		grade = "C"
+	} else if score >= 65 && score <= 70 {
+		grade = "D+"
+	} else if score >= 60 && score <= 65 {
+		grade = "D"
+	} else if score >= 55 {
+		grade = "F"
+	}
+
+	return grade
+}
+
 func main() {
-	//a = คะแนนงาน
-	//b = คะแนนเช็๋กชื่อ
-	//c = คะแนนสอบFinal
-	//d = คะแนนพิเศษ
-	//f = คะแนนทั้งหมดที่รวมกัน
-	a := 85
+	a := 50
 	b := 10
 	c := 0
 	d := 0
@@ -29,43 +49,11 @@ func main() {
 			if b >= 10 {
 				d = 5
 				f = a + b + c + d
-				if f >= 90 {
-					g = "A"
-				} else if f >= 85 && f <= 90 {
-					g = "B+"
-				} else if f >= 80 && f <= 85 {
-					g = "B"
-				} else if f >= 75 && f <= 80 {
-					g = "C+"
-				} else if f >= 70 && f <= 75 {
-					g = "C"
-				} else if f >= 65 && f <= 70 {
-					g = "D+"
-				} else if f >= 60 && f <= 65 {
-					g = "D"
-				} else if f >= 55 && f <= 0 {
-					g = "F"
-				}
+				g = calculateGrade(f)
 			} else {
 				d = 0
 				f = a + b + c + d
-				if f >= 90 {
-					g = "A"
-				} else if f >= 85 && f <= 90 {
-					g = "B+"
-				} else if f >= 80 && f <= 85 {
-					g = "B"
-				} else if f >= 75 && f <= 80 {
-					g = "C+"
-				} else if f >= 70 && f <= 75 {
-					g = "C"
-				} else if f >= 65 && f <= 70 {
-					g = "D+"
-				} else if f >= 60 && f <= 65 {
-					g = "D"
-				} else if f >= 55 && f <= 0 {
-					g = "F"
-				}
+				g = calculateGrade(f)
 			}
 		}
 	}
