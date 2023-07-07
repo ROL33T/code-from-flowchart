@@ -13,7 +13,7 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	m := 0
+	m := 0 //จำนวนเงินในกระเป๋า
 	total := 0 // จำนวนธนบัตรและเหรียญทั้งหมด
 	if m > 0 {
 		if m >= 1000 {
