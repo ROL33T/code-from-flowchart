@@ -1,0 +1,33 @@
+package main
+
+import "fmt"
+
+func print(a ...interface{}) {
+	fmt.Println(a...)
+}
+
+func printf(format string, a ...interface{}) {
+	fmt.Printf(format, a...)
+}
+
+func main() {
+	a := 0
+	b := 12000
+	c := 0
+	d := ""
+
+	if a > 15000 {
+		if b > 10000 {
+			c = 1000
+			d = "คุณได้รับบัตรกำนัน"
+		}
+	} else {
+		d = "คุณไม่ได้รับบัตรกำนันเนื่องจาก ไม่สามารถตัดบัตรได้เนื่องจากคุณไม่มีเงิน"
+	}
+	if c >= 1000 {
+		printf("%s %d", d, c)
+	} else {
+		printf("%s", d)
+	}
+
+}

@@ -1,0 +1,68 @@
+package main
+
+import "fmt"
+
+func print(a ...interface{}) {
+	fmt.Println(a...)
+}
+
+func printf(format string, a ...interface{}) {
+	fmt.Printf(format, a...)
+}
+func main() {
+	a := 85
+	b := 10
+	c := 0
+	d := 0
+	f := a + b + c + d
+	g := "F"
+
+	if b < 5 {
+		g = "F"
+	} else {
+		if a >= 40 {
+			if b >= 10 {
+				d = 5
+				f = a + b + c + d
+				if f >= 90 {
+					g = "A"
+				} else if f >= 85 && f <= 90 {
+					g = "B+"
+				} else if f >= 80 && f <= 85 {
+					g = "B"
+				} else if f >= 75 && f <= 80 {
+					g = "C+"
+				} else if f >= 70 && f <= 75 {
+					g = "C"
+				} else if f >= 65 && f <= 70 {
+					g = "D+"
+				} else if f >= 60 && f <= 65 {
+					g = "D"
+				} else if f >= 55 && f <= 0 {
+					g = "F"
+				}
+			} else {
+				d = 0
+				f = a + b + c + d
+				if f >= 90 {
+					g = "A"
+				} else if f >= 85 && f <= 90 {
+					g = "B+"
+				} else if f >= 80 && f <= 85 {
+					g = "B"
+				} else if f >= 75 && f <= 80 {
+					g = "C+"
+				} else if f >= 70 && f <= 75 {
+					g = "C"
+				} else if f >= 65 && f <= 70 {
+					g = "D+"
+				} else if f >= 60 && f <= 65 {
+					g = "D"
+				} else if f >= 55 && f <= 0 {
+					g = "F"
+				}
+			}
+		}
+	}
+	printf("คุณได้คะแนน %d เกรด: %s\n", f, g)
+}

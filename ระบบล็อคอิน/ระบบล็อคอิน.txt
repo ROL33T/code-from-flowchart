@@ -1,0 +1,63 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func print(a ...interface{}) {
+	fmt.Println(a...)
+}
+
+func printf(format string, a ...interface{}) {
+	fmt.Printf(format, a...)
+}
+
+func main() {
+	user := "test"
+	password := "test"
+	userinput := "test1"
+	passwordinput := "test1"
+	countLogin := 0
+	countPass := 0
+	expDateLockLogin := time.Now()
+	lockClient := false
+
+	if expDateLockLogin.After(time.Now()) {
+		fmt.Println("reset")
+		countLogin = 0
+		countPass = 0
+		expDateLockLogin = time.Time{}
+		lockClient = false
+	} else {
+		if lockClient {
+			fmt.Println("lock user")
+		} else {
+			if user == userinput {
+				if password == passwordinput {
+					fmt.Println("login ok")
+					countLogin = 0
+					countPass = 0
+					expDateLockLogin = time.Now()
+					lockClient = false
+				} else {
+					countPass++
+					if countPass >= 10 {
+						expDateLockLogin = expDateLockLogin.Add(time.Duration(-30) * time.Minute)
+						lockClient = true
+					} else {
+						fmt.Println("รหัสคุณผิดพลาด กรุณาลองใหม่อีกครั้งที่ ",countPass)
+					}
+				}
+			} else {
+				countLogin++
+				if countLogin >= 10 {
+					expDateLockLogin = expDateLockLogin.Add(time.Duration(-30) * time.Minute)
+					lockClient = true
+				} else {
+					fmt.Println("UserName คุณผิดพลาด กรุณาลองใหม่อีกครั้ง ",countLogin)
+				}
+			}
+		}
+	}
+}
