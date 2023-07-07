@@ -14,14 +14,14 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	user := "test"
-	password := "test"
-	userinput := "test1"
-	passwordinput := "test1"
-	countLogin := 0
-	countPass := 0
-	expDateLockLogin := time.Now()
-	lockClient := false
+	user := "test" // username กำหนดเอาไว้
+	password := "test" // password กำหนดเอาไว้
+	userinput := "test1" // input username
+	passwordinput := "test1" // input password
+	countLogin := 0 // จำนวนครั้งที่ล็อคอินผิด
+	countPass := 0 // จำนวนครั้งที่ใส่พาสผิด
+	expDateLockLogin := time.Now() //เวลาล่าสุด
+	lockClient := false // ล็อค User หรือ ล็อค ไอพี หรือ ไม่ true = ล็อค false = ไม่ล็อค
 
 	if expDateLockLogin.After(time.Now()) {
 		print("reset")
@@ -42,7 +42,7 @@ func main() {
 					lockClient = false
 				} else {
 					countPass++
-					if countPass >= 10 {
+					if countPass >= 5 {
 						expDateLockLogin = expDateLockLogin.Add(time.Duration(-30) * time.Minute)
 						lockClient = true
 					} else {

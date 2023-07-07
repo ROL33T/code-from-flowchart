@@ -14,11 +14,11 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	levelCurrent := 5
-	countDayRegister := 1
-	eventDateStart := time.Now()
-	eventDateEnd := eventDateStart.Add(7 * 24 * time.Hour)
-	countGiftCache := 0
+	levelCurrent := 5 // เวเวล ล่าสุด
+	countDayRegister := 1 //วันที่สมัคร
+	eventDateStart := time.Now() // เวลาล่าสุด ของกิจกรรม
+	eventDateEnd := eventDateStart.Add(7 * 24 * time.Hour) // เวลาล่าสุด + เพื่ม 7 วันหลังจากเรื่ม กิจกรรม
+	countGiftCache := 0 //จำนวนครั้งที่รับของ
 
 	if countDayRegister <= 7 {
 		print("welcome gift box 1ea")

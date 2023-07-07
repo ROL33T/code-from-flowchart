@@ -13,9 +13,9 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	status := ""
+	status := ""//input สถานะ
 
-	status = "walk"
+	status = "walk"// เช็ท สถานะ
 
 	if status == "walk" {
 		print("คุณกำลังเดินอยู่")

@@ -10,6 +10,11 @@ func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 func main() {
+	//a = คะแนนงาน
+	//b = คะแนนเช็๋กชื่อ
+	//c = คะแนนสอบFinal
+	//d = คะแนนพิเศษ
+	//f = คะแนนทั้งหมดที่รวมกัน
 	a := 85
 	b := 10
 	c := 0

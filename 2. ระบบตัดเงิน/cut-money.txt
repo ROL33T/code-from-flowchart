@@ -7,7 +7,7 @@ func print(a ...interface{}) {
 }
 
 func main() {
-	pay := 300
+	pay := 300 //ยอดที่ต้องชำระ
 
 	if pay > 0 {
 		print("ตัดเงิน")

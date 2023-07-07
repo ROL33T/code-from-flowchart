@@ -13,9 +13,9 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	money := 100
+	money := 100 //เงินในกระเป๋า
 
-	pay := 500
+	pay := 500 //ยอดที่ต้องชำระ
 
 	if money >= pay {
 		printf("ระบบทำการตัดเงินเรียบร้อยแล้ว ตอนนี้ ยอดเงินเหลือ %d", money-pay)
