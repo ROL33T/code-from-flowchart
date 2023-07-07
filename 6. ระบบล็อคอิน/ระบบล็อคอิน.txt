@@ -24,18 +24,18 @@ func main() {
 	lockClient := false
 
 	if expDateLockLogin.After(time.Now()) {
-		fmt.Println("reset")
+		print("reset")
 		countLogin = 0
 		countPass = 0
 		expDateLockLogin = time.Time{}
 		lockClient = false
 	} else {
 		if lockClient {
-			fmt.Println("lock user")
+			print("lock user")
 		} else {
 			if user == userinput {
 				if password == passwordinput {
-					fmt.Println("login ok")
+					print("login ok")
 					countLogin = 0
 					countPass = 0
 					expDateLockLogin = time.Now()
@@ -46,7 +46,7 @@ func main() {
 						expDateLockLogin = expDateLockLogin.Add(time.Duration(-30) * time.Minute)
 						lockClient = true
 					} else {
-						fmt.Println("รหัสคุณผิดพลาด กรุณาลองใหม่อีกครั้งที่ ",countPass)
+						print("รหัสคุณผิดพลาด กรุณาลองใหม่อีกครั้งที่ ",countPass)
 					}
 				}
 			} else {
@@ -55,7 +55,7 @@ func main() {
 					expDateLockLogin = expDateLockLogin.Add(time.Duration(-30) * time.Minute)
 					lockClient = true
 				} else {
-					fmt.Println("UserName คุณผิดพลาด กรุณาลองใหม่อีกครั้ง ",countLogin)
+					print("UserName คุณผิดพลาด กรุณาลองใหม่อีกครั้ง ",countLogin)
 				}
 			}
 		}
