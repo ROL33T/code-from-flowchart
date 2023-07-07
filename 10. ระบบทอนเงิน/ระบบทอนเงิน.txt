@@ -13,35 +13,37 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	m := 1000 // จำนวนเงินทั้งหมดในกระเป๋า
+	m := 0
 	total := 0 // จำนวนธนบัตรและเหรียญทั้งหมด
+	if m > 0 {
+		if m >= 1000 {
+			total += m / 1000
+			m %= 1000
+		}
 
-	if m >= 1000 {
-		total += m / 1000
-		m %= 1000
+		if m >= 500 {
+			total++
+			m -= 500
+		}
+
+		if m >= 100 {
+			total += m / 100
+			m %= 100
+		}
+
+		if m >= 10 {
+			total += m / 10
+			m %= 10
+		}
+
+		if m >= 5 {
+			total += m / 5
+			m %= 5
+		}
+
+		total += m // นับจำนวนเหรียญ 1
+	} else {
+		total = 0
 	}
-
-	if m >= 500 {
-		total++
-		m -= 500
-	}
-
-	if m >= 100 {
-		total += m / 100
-		m %= 100
-	}
-
-	if m >= 10 {
-		total += m / 10
-		m %= 10
-	}
-
-	if m >= 5 {
-		total += m / 5
-		m %= 5
-	}
-
-	total += m // นับจำนวนธนบัตร และ เหรียญ
-
 	print("จำนวนธนบัตรและเหรียญทั้งหมด:", total)
 }
