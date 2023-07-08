@@ -12,10 +12,13 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
-
 func main() {
 	userinput := ""
 	passwordinput := ""
@@ -42,11 +45,11 @@ func main() {
 				lockClient = false
 			} else {
 				if !isLoginSuccess {
-					print("Enter username input: ")
+					print("กรุณาใส่ Username: ")
 					userinput, _ = reader.ReadString('\r')
 					userinput = strings.TrimSpace(userinput)
 
-					print("Enter password input: ")
+					print("กรุณาใส่ Password: ")
 					passwordinput, _ = reader.ReadString('\r')
 					passwordinput = strings.TrimSpace(passwordinput)
 

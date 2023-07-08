@@ -6,10 +6,18 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
+func printf(format string, a ...interface{}) {
+	fmt.Printf(format, a...)
+}
+
 func main() {
 	var t1 float64
-	fmt.Print("กรุณาใส่เวลาเข้างาน: ") //เวลาเข้างาน
-	fmt.Scan(&t1)
+	print("กรุณาใส่เวลาเข้างาน: ") //เวลาเข้างาน
+	Scan(&t1)
 
 	JOIN_WORK := false
 
@@ -28,8 +36,8 @@ func main() {
 	if JOIN_WORK {
 
 		var t2 float64
-		fmt.Print("กรุณาใส่เวลาออกงาน: ") //เวลาออกงาน
-		fmt.Scan(&t2)
+		print("กรุณาใส่เวลาออกงาน: ") //เวลาออกงาน
+		Scan(&t2)
 
 		if t2 <= 15.59 {
 			print("ขาดงาน")

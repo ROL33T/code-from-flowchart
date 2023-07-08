@@ -6,6 +6,10 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
@@ -36,12 +40,12 @@ func calculateGrade(score int) string {
 
 func main() {
 	var a int
-	fmt.Print("กรุณาใส่คะแนนงาน: ") //คะแนนงาน
-	fmt.Scan(&a)
+	print("กรุณาใส่คะแนนงาน: ") //คะแนนงาน
+	Scan(&a)
 
 	var b int
-	fmt.Print("กรุณาใส่คะแนนเช็คชื่อ: ") //คะแนนเช็คชื่อ
-	fmt.Scan(&b)
+	print("กรุณาใส่คะแนนเช็คชื่อ: ") //คะแนนเช็คชื่อ
+	Scan(&b)
 
 	c := 0             //คะแนนพิเศษ
 	d := 0             //คะแนน Final

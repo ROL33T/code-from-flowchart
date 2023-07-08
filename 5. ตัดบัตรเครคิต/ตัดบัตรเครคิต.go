@@ -6,14 +6,18 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
 func main() {
 	var a int
-	fmt.Print("กรุณาใส่จำนวนเงินที่ชำระบิลเดือนนี้: ") //ยอดที่ต้องชำระเดือนนี้
-	fmt.Scan(&a)
+	print("กรุณาใส่จำนวนเงินที่ชำระบิลเดือนนี้: ") //ยอดที่ต้องชำระเดือนนี้
+	Scan(&a)
 
 	c := 0  //บัตรกำนัน
 	d := "" // ประกาศตัวแปรไว้print
@@ -21,8 +25,8 @@ func main() {
 	if a > 15000 {
 
 		var b int
-		fmt.Print("กรุณาใส่จำนวนเงินที่ชำระบิลเดือนหน้า: ") //ยอดที่้ต้องชำระเดือนหน้า
-		fmt.Scan(&b)
+		print("กรุณาใส่จำนวนเงินที่ชำระบิลเดือนหน้า: ") //ยอดที่้ต้องชำระเดือนหน้า
+		Scan(&b)
 
 		if b > 10000 {
 			c = 1000

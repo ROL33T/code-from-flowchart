@@ -6,14 +6,18 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
 func main() {
 	var count_number int
-	fmt.Print("กรุณาใส่จำนวนเลขที่ต้องการให้นับ: ")
-	fmt.Scan(&count_number)
+	print("กรุณาใส่จำนวนเลขที่ต้องการให้นับ: ")
+	Scan(&count_number)
 
 	a := 0 //นับเลขคู่
 	b := 0 //นับเลขคี่

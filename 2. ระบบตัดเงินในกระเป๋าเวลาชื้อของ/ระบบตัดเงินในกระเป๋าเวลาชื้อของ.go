@@ -8,18 +8,22 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
 func main() {
 	var money int
-	fmt.Print("กรุณาใส่จำนวนเงินในกระเป๋า: ")
-	fmt.Scan(&money)
+	print("กรุณาใส่จำนวนเงินในกระเป๋า: ")
+	Scan(&money)
 
 	var pay int
-	fmt.Print("กรุณาใส่ราคาสิ่งของ: ")
-	fmt.Scan(&pay)
+	print("กรุณาใส่ราคาสิ่งของ: ")
+	Scan(&pay)
 
 	if money >= pay {
 		money = money - pay

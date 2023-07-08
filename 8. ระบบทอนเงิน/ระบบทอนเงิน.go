@@ -8,14 +8,18 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
 func main() {
 	var m int
-	fmt.Print("กรุณาใส่จำนวนเงินในกระเป๋า: ")
-	fmt.Scan(&m)
+	print("กรุณาใส่จำนวนเงินในกระเป๋า: ")
+	Scan(&m)
 
 	total := 0 // จำนวนธนบัตรและเหรียญทั้งหมด
 

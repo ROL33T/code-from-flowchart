@@ -9,18 +9,21 @@ func print(a ...interface{}) {
 	fmt.Println(a...)
 }
 
+func Scan(a ...interface{}) {
+	fmt.Scan(a...)
+}
+
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
-
 func main() {
 	var levelCurrent int
-	fmt.Print("กรุณาใส่เวเวลที่คุณต้องการ: ") // เวเวล ล่าสุด
-	fmt.Scan(&levelCurrent)
+	print("กรุณาใส่เวเวลที่คุณต้องการ: ") // เวเวล ล่าสุด
+	Scan(&levelCurrent)
 
 	var countDayRegister int
-	fmt.Print("กรุณาใส่วันที่สมัคร เช่น 1 วัน หรือ 14วัน: ") //วันที่สมัคร
-	fmt.Scan(&countDayRegister)
+	print("กรุณาใส่วันที่สมัคร เช่น 1 วัน หรือ 14วัน: ") //วันที่สมัคร
+	Scan(&countDayRegister)
 
 	eventDateStart := time.Now()                           // เวลาล่าสุด ของกิจกรรม
 	eventDateEnd := eventDateStart.Add(7 * 24 * time.Hour) // เวลาล่าสุด + เพื่ม 7 วันหลังจากเรื่ม กิจกรรม
