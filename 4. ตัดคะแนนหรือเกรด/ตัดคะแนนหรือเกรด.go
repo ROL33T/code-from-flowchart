@@ -13,7 +13,7 @@ func printf(format string, a ...interface{}) {
 func calculateGrade(score int) string {
 	var grade string
 
-	if score >= 90 {
+	if score > 90 {
 		grade = "A"
 	} else if score >= 85 && score <= 90 {
 		grade = "B+"
