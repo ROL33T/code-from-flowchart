@@ -23,9 +23,9 @@ func calculateGrade(score int) string {
 		grade = "C+"
 	} else if score >= 70 && score <= 75 {
 		grade = "C"
-	} else if score >= 65 && score <= 70 {
+	} else if score >= 60 && score <= 70 {
 		grade = "D+"
-	} else if score >= 60 && score <= 65 {
+	} else if score >= 55 && score <= 60 {
 		grade = "D"
 	} else if score >= 55 {
 		grade = "F"
@@ -35,12 +35,12 @@ func calculateGrade(score int) string {
 }
 
 func main() {
-	a := 50            //คะแนนงาน
-	b := 10            //คะแนนเช็๋กชื่อ
-	c := 0             //คะแนนสอบFinal
-	d := 0             // คะแนนพิเศษ
-	f := a + b + c + d //คะแนนทั้งหมดที่เอามารวมกัน
-	g := "F"           //ผลเกรด
+	a := 50
+	b := 5
+	c := 0
+	d := 0
+	f := a + b + c + d
+	g := "F"
 
 	if b < 5 {
 		g = "F"
