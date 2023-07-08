@@ -35,8 +35,8 @@ func calculateGrade(score int) string {
 }
 
 func main() {
-	a := 50
-	b := 5
+	a := 40
+	b := 10
 	c := 0
 	d := 0
 	f := a + b + c + d
@@ -46,6 +46,16 @@ func main() {
 		g = "F"
 	} else {
 		if a >= 40 {
+			if b >= 10 {
+				d = 5
+				f = a + b + c + d
+				g = calculateGrade(f)
+			} else {
+				d = 0
+				f = a + b + c + d
+				g = calculateGrade(f)
+			}
+		} else {
 			if b >= 10 {
 				d = 5
 				f = a + b + c + d
