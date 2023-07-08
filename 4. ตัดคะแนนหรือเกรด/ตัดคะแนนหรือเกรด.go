@@ -56,15 +56,9 @@ func main() {
 				g = calculateGrade(f)
 			}
 		} else {
-			if b >= 10 {
-				d = 5
-				f = a + b + c + d
-				g = calculateGrade(f)
-			} else {
-				d = 0
-				f = a + b + c + d
-				g = calculateGrade(f)
-			}
+			d = 0
+			f = a + b + c + d
+			g = calculateGrade(f)
 		}
 	}
 	printf("คุณได้คะแนน %d เกรด: %s\n", f, g)
