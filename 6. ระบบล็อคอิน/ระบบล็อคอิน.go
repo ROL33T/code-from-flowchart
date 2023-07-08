@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 	"time"
 )
 
@@ -13,51 +16,67 @@ func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
-func main() {
-	user := "test" // username กำหนดเอาไว้
-	password := "test" // password กำหนดเอาไว้
-	userinput := "test1" // input username
-	passwordinput := "test1" // input password
-	countLogin := 0 // จำนวนครั้งที่ล็อคอินผิด
-	countPass := 0 // จำนวนครั้งที่ใส่พาสผิด
-	expDateLockLogin := time.Now() //เวลาล่าสุด
-	lockClient := false // ล็อค User หรือ ล็อค ไอพี หรือ ไม่ true = ล็อค false = ไม่ล็อค
+var userinput, passwordinput string
 
-	if expDateLockLogin.After(time.Now()) {
-		print("reset")
-		countLogin = 0
-		countPass = 0
-		expDateLockLogin = time.Time{}
-		lockClient = false
-	} else {
-		if lockClient {
-			print("lock user")
+func main() {
+
+	user, password := "test", "1234"
+
+	countLogin := 0
+	countPass := 0
+	expDateLockLogin := time.Now()
+	lockClient := false
+
+	reader := bufio.NewReader(os.Stdin)
+
+	for {
+		print("Enter username input: ")
+		userinput, _ = reader.ReadString('\r')
+		userinput = strings.TrimSpace(userinput)
+
+		print("Enter password input: ")
+		passwordinput, _ = reader.ReadString('\r')
+		passwordinput = strings.TrimSpace(passwordinput)
+
+		if expDateLockLogin.After(time.Now()) {
+			print("reset")
+			countLogin = 0
+			countPass = 0
+			expDateLockLogin = time.Time{}
+			lockClient = false
 		} else {
-			if user == userinput {
-				if password == passwordinput {
-					print("login ok")
-					countLogin = 0
-					countPass = 0
-					expDateLockLogin = time.Now()
-					lockClient = false
+			if lockClient {
+				print("lock user")
+				break
+			} else {
+				if userinput == user {
+					if passwordinput == password {
+						print("login ok")
+						countLogin = 0
+						countPass = 0
+						expDateLockLogin = time.Now()
+						lockClient = false
+						break // Exit the loop on successful login
+					} else {
+						countPass++
+						if countPass >= 5 {
+							expDateLockLogin = expDateLockLogin.Add(-30 * time.Minute)
+							lockClient = true
+						} else {
+							print("รหัสคุณผิดพลาด กรุณาลองใหม่อีกครั้งที่", countPass)
+						}
+					}
 				} else {
-					countPass++
-					if countPass >= 5 {
-						expDateLockLogin = expDateLockLogin.Add(time.Duration(-30) * time.Minute)
+					countLogin++
+					if countLogin >= 10 {
+						expDateLockLogin = expDateLockLogin.Add(-30 * time.Minute)
 						lockClient = true
 					} else {
-						print("รหัสคุณผิดพลาด กรุณาลองใหม่อีกครั้งที่ ",countPass)
+						print("UserName คุณผิดพลาด กรุณาลองใหม่อีกครั้ง", countLogin)
 					}
-				}
-			} else {
-				countLogin++
-				if countLogin >= 10 {
-					expDateLockLogin = expDateLockLogin.Add(time.Duration(-30) * time.Minute)
-					lockClient = true
-				} else {
-					print("UserName คุณผิดพลาด กรุณาลองใหม่อีกครั้ง ",countLogin)
 				}
 			}
 		}
 	}
+
 }
