@@ -33,7 +33,7 @@ func main() {
 			print("เกินเวลาที่กิจกรรมกำหนดไว้")
 		} else {
 			countCurrent = int(levelCurrent / 5)
-			for i := 0; i < int(countCurrent); i++ {
+			for i := 0; i < countCurrent; i++ {
 				if levelCurrent >= 5 {
 					levelCurrent -= 5
 					countGiftCache++
