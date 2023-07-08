@@ -20,12 +20,13 @@ func main() {
 	eventDateEnd := eventDateStart.Add(7 * 24 * time.Hour) // เวลาล่าสุด + เพื่ม 7 วันหลังจากเรื่ม กิจกรรม
 	countGiftCache := 0                                    //จำนวนครั้งที่รับของ
 	countCurrent := 0
+
 	if countDayRegister <= 7 {
 		print("welcome gift box 1ea")
 		if eventDateStart.After(eventDateEnd) {
 			print("เกินเวลาที่กิจกรรมกำหนดไว้")
 		} else {
-			countCurrent = levelCurrent / 5
+			countCurrent = int(levelCurrent / 5)
 			for i := 0; i < int(countCurrent); i++ {
 				if levelCurrent >= 5 {
 					levelCurrent -= 5
@@ -42,8 +43,8 @@ func main() {
 		if eventDateStart.After(eventDateEnd) {
 			print("เกินเวลาที่กิจกรรมกำหนดไว้")
 		} else {
-			countCurrent = levelCurrent / 5
-			for i := 0; i < int(countCurrent); i++ {
+			countCurrent = int(levelCurrent / 5)
+			for i := 0; i < countCurrent; i++ {
 				if levelCurrent >= 5 {
 					levelCurrent -= 5
 					countGiftCache++
