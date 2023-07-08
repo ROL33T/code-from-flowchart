@@ -7,8 +7,9 @@ func print(a ...interface{}) {
 }
 
 func main() {
-	t1 := 9.30  //เวลาเข้างาน
-	t2 := 15.59 //เวลาออกงาน
+	var t1 float64
+	fmt.Print("กรุณาใส่เวลาเข้างาน: ") //เวลาเข้างาน
+	fmt.Scan(&t1)
 
 	JOIN_WORK := false
 
@@ -25,6 +26,10 @@ func main() {
 	}
 
 	if JOIN_WORK {
+
+		var t2 float64
+		fmt.Print("กรุณาใส่เวลาออกงาน: ") //เวลาออกงาน
+		fmt.Scan(&t2)
 
 		if t2 <= 15.59 {
 			print("ขาดงาน")

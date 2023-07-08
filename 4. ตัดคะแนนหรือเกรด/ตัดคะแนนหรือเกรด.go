@@ -35,8 +35,14 @@ func calculateGrade(score int) string {
 }
 
 func main() {
-	a := 40            //คะแนนงาน
-	b := 10            //คะแนนเช็คชื่อ
+	var a int
+	fmt.Print("กรุณาใส่คะแนนงาน: ") //คะแนนงาน
+	fmt.Scan(&a)
+
+	var b int
+	fmt.Print("กรุณาใส่คะแนนเช็คชื่อ: ") //คะแนนเช็คชื่อ
+	fmt.Scan(&b)
+
 	c := 0             //คะแนนพิเศษ
 	d := 0             //คะแนน Final
 	f := a + b + c + d // รวม คะแนนทั้งหมด

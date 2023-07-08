@@ -13,9 +13,13 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	money := 100 //เงินในกระเป๋า
+	var money int
+	fmt.Print("กรุณาใส่จำนวนเงินในกระเป๋า: ")
+	fmt.Scan(&money)
 
-	pay := 500 //ยอดที่ต้องชำระ
+	var pay int
+	fmt.Print("กรุณาใส่ราคาสิ่งของ: ")
+	fmt.Scan(&pay)
 
 	if money >= pay {
 		printf("ระบบทำการตัดเงินเรียบร้อยแล้ว ตอนนี้ ยอดเงินเหลือ %d", money-pay)

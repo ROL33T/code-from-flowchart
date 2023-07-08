@@ -14,8 +14,14 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	levelCurrent := 21                                     // เวเวล ล่าสุด
-	countDayRegister := 1                                  //วันที่สมัคร
+	var levelCurrent int
+	fmt.Print("กรุณาใส่เวเวลที่คุณต้องการ: ") // เวเวล ล่าสุด
+	fmt.Scan(&levelCurrent)
+
+	var countDayRegister int
+	fmt.Print("กรุณาใส่วันที่สมัคร เช่น 1 วัน หรือ 14วัน: ") //วันที่สมัคร
+	fmt.Scan(&countDayRegister)
+
 	eventDateStart := time.Now()                           // เวลาล่าสุด ของกิจกรรม
 	eventDateEnd := eventDateStart.Add(7 * 24 * time.Hour) // เวลาล่าสุด + เพื่ม 7 วันหลังจากเรื่ม กิจกรรม
 	countGiftCache := 0                                    //จำนวนครั้งที่รับของ
