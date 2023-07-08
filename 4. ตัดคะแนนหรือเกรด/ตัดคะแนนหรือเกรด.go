@@ -27,7 +27,7 @@ func calculateGrade(score int) string {
 		grade = "D+"
 	} else if score >= 55 && score <= 60 {
 		grade = "D"
-	} else if score >= 55 {
+	} else if score >= 0 && score <= 55 {
 		grade = "F"
 	}
 
