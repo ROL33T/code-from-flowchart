@@ -7,26 +7,31 @@ func print(a ...interface{}) {
 }
 
 func main() {
-	t1 := 9.00 //เวลาเข้างาน
-	t2 := 18.59 //เวลาออกงาน
+	t1 := 9.30  //เวลาเข้างาน
+	t2 := 15.59 //เวลาออกงาน
+
+	JOIN_WORK := false
 
 	if t1 <= 9.00 {
 		print("เข้างาน")
+		JOIN_WORK = true
+
+	} else if t1 >= 9.30 {
+		print("ขาดงาน")
+		JOIN_WORK = false
+	} else {
+		print("สาย")
+		JOIN_WORK = true
+	}
+
+	if JOIN_WORK {
+
 		if t2 <= 15.59 {
 			print("ขาดงาน")
 		} else {
-			if t2 >= 16.00 && t2 <= 18.00 {
-				print("เลิกงาน")
-			} else {
-				if t2 > 18.00 {
-					print("OT")
-				}
-			}
+			JOIN_WORK = true
 		}
-	} else if t1 >= 9.30 {
-		print("ขาดงาน")
-	} else {
-		print("สาย")
+
 		if t2 >= 16.00 && t2 <= 18.00 {
 			print("เลิกงาน")
 		} else {
@@ -34,5 +39,6 @@ func main() {
 				print("OT")
 			}
 		}
+
 	}
 }
