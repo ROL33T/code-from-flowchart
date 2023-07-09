@@ -62,44 +62,71 @@ func main() {
 	countGiftCache := 0 // จำนวนครั้งที่รับของ
 	X := 0              //คำนวน เวเวล
 
-	if countDayRegister <= 7 {
-		gm.LogF("%s", "Welcome gift box 1 ea\n")
-		if eventDateStart > eventDateEnd {
-			gm.LogF("%s", "เกินเวลาที่กิจกรรมกำหนดไว้")
-		} else {
-			countCurrent := levelCurrent / 5
-			for i := 0; i < countCurrent; i++ {
-				if levelCurrent >= 5 {
-					X = X + 5
-					g := &GiftBox{Level: X}
-					g.GiveBox()
-					gm.AddGiftBox(g)
-					countGiftCache++
-					levelCurrent -= 5
+	event_Bool := false
+	Register_Bool := false
+	Level_Bool := false
+
+	if eventDateStart <= 0 {
+		gm.LogF("%s", "ระบบวันที่กิจกรรม มากกว่า 0 ขึ้นไป\n")
+	} else {
+		event_Bool = true
+	}
+	if countDayRegister <= 0 {
+		gm.LogF("%s", "ระบบวันที่สมัคร  มากกว่า 0 ขึ้นไป\n")
+	} else {
+		Register_Bool = true
+	}
+	if levelCurrent <= 0 {
+		gm.LogF("%s", "ระบบเวเวล  มากกว่า 0 ขึ้นไป\n")
+	} else {
+		Level_Bool = true
+	}
+
+	if event_Bool && Register_Bool && Level_Bool {
+		if countDayRegister != 0 {
+			if countDayRegister <= 7 {
+				gm.LogF("%s", "Welcome gift box 1 ea\n")
+				if eventDateStart > eventDateEnd {
+					gm.LogF("%s", "เกินเวลาที่กิจกรรมกำหนดไว้")
 				} else {
-					gm.LogF("%s", "คุณไม่ได้รับของ")
+					countCurrent := levelCurrent / 5
+					for i := 0; i < countCurrent; i++ {
+						if levelCurrent >= 5 {
+							X = X + 5
+							g := &GiftBox{Level: X}
+							g.GiveBox()
+							gm.AddGiftBox(g)
+							countGiftCache++
+							levelCurrent -= 5
+						} else {
+							gm.LogF("%s", "คุณไม่ได้รับของ")
+						}
+					}
+				}
+			} else {
+				gm.LogF("%s", "ไม่ได้รับของเนื่องจากคุณสมัครเกิน 7 วันแล้ว")
+				if eventDateStart > eventDateEnd {
+					gm.LogF("%s", "เกินเวลาที่กิจกรรมกำหนดไว้")
+				} else {
+					countCurrent := levelCurrent / 5
+					for i := 0; i <= countCurrent; i++ {
+						if levelCurrent >= 5 {
+							X = X + 5
+							g := &GiftBox{Level: X}
+							g.GiveBox()
+							gm.AddGiftBox(g)
+							countGiftCache++
+							levelCurrent -= 5
+						} else {
+							gm.LogF("%s", "คุณไม่ได้รับของ")
+						}
+					}
 				}
 			}
-		}
-	} else {
-		gm.LogF("%s", "ไม่ได้รับของเนื่องจากคุณสมัครเกิน 7 วันแล้ว")
-		if eventDateStart > eventDateEnd {
-			gm.LogF("%s", "เกินเวลาที่กิจกรรมกำหนดไว้")
-		} else {
-			countCurrent := levelCurrent / 5
-			for i := 0; i <= countCurrent; i++ {
-				if levelCurrent >= 5 {
-					X = X + 5
-					g := &GiftBox{Level: X}
-					g.GiveBox()
-					gm.AddGiftBox(g)
-					countGiftCache++
-					levelCurrent -= 5
-				} else {
-					gm.LogF("%s", "คุณไม่ได้รับของ")
-				}
+
+			if countGiftCache > 0 {
+				gm.LogF("คุณได้รับ Give gift box level ทั้งหมด %d กล่อง\n", countGiftCache)
 			}
 		}
 	}
-	gm.LogF("คุณได้รับ Give gift box level ทั้งหมด %d กล่อง\n", countGiftCache)
 }
