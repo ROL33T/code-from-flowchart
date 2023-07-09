@@ -23,67 +23,74 @@ func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
+func Sprintf(format string, a ...interface{}) string {
+	return fmt.Sprintf(format, a...)
+}
+
 func GETURL(URL string) string {
-	url := fmt.Sprintf("http://localhost/api/%s.php", URL)
+	url := Sprintf("http://localhost/api/%s.php", URL)
 	return url
 }
 
-func Login(username string, password string) {
-	url := GETURL("login")
-	data := []byte(fmt.Sprintf("username=%s&password=%s", username, password))
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
+func LoginAndRegister(username string, password string, mode string) {
+	if mode == "Login" {
+		url := GETURL("login")
+		data := []byte(Sprintf("username=%s&password=%s", username, password))
+		req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
 
-	if err != nil {
-		fmt.Println("Error creating request:", err)
-		return
+		if err != nil {
+			println("[LOG] Error creating request:", err)
+			return
+		}
+
+		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			println("[LOG] Error sending request:", err)
+			return
+		}
+		defer resp.Body.Close()
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			println("[LOG] Error reading response body:", err)
+			return
+		}
+
+		println("[LOG] Resp", string(body))
+	} else if mode == "Register" {
+		url := GETURL("register")
+		data := []byte(fmt.Sprintf("username=%s&password=%s", username, password))
+		req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
+
+		if err != nil {
+			println("[LOG] Error creating request:", err)
+			return
+		}
+
+		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			println("[LOG] Error sending request:", err)
+			return
+		}
+		defer resp.Body.Close()
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			println("[LOG] Error reading response body:", err)
+			return
+		}
+
+		println("[LOG] Resp", string(body))
+	} else {
+		println("[LOG] ERROR MODE")
 	}
 
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println("Error sending request:", err)
-		return
-	}
-	defer resp.Body.Close()
-
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("Error reading response body:", err)
-		return
-	}
-
-	fmt.Println("Resp", string(body))
-}
-
-func Register(username string, password string) {
-	url := GETURL("register")
-	data := []byte(fmt.Sprintf("username=%s&password=%s", username, password))
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(data))
-
-	if err != nil {
-		fmt.Println("Error creating request:", err)
-		return
-	}
-
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Println("Error sending request:", err)
-		return
-	}
-	defer resp.Body.Close()
-
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("Error reading response body:", err)
-		return
-	}
-
-	fmt.Println("Resp", string(body))
 }
 
 func main() {
@@ -117,7 +124,7 @@ func main() {
 		}
 
 		if userinput != "" && passwordinput != "" {
-			Login(userinput, passwordinput)
+			LoginAndRegister(userinput, passwordinput, "Login")
 		}
 
 	} else if mode == "B" {
@@ -143,7 +150,7 @@ func main() {
 		}
 
 		if userinput != "" && passwordinput != "" {
-			Register(userinput, passwordinput)
+			LoginAndRegister(userinput, passwordinput, "Register")
 		}
 
 	} else {
