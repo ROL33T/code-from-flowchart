@@ -22,6 +22,14 @@ type GiftBox struct {
 	Level int
 }
 
+func (g *GiftBox) GiveBox() {
+	printf("[Log] Give gift box level %d\n", g.Level)
+}
+
+//end class
+
+// class GiftManager
+
 type GiftManager struct {
 	GiftBoxes []*GiftBox
 }
@@ -34,9 +42,7 @@ func (gm *GiftManager) LogF(format string, a ...interface{}) {
 	printf("[Log] "+format, a...)
 }
 
-func (g *GiftBox) Open() {
-	printf("[Log] Give gift box level %d\n", g.Level)
-}
+//end class
 
 func main() {
 	var levelCurrent int
@@ -66,7 +72,7 @@ func main() {
 				if levelCurrent >= 5 {
 					X = X + 5
 					g := &GiftBox{Level: X}
-					g.Open()
+					g.GiveBox()
 					gm.AddGiftBox(g)
 					countGiftCache++
 					levelCurrent -= 5
@@ -85,7 +91,7 @@ func main() {
 				if levelCurrent >= 5 {
 					X = X + 5
 					g := &GiftBox{Level: X}
-					g.Open()
+					g.GiveBox()
 					gm.AddGiftBox(g)
 					countGiftCache++
 					levelCurrent -= 5
@@ -95,6 +101,5 @@ func main() {
 			}
 		}
 	}
-
 	gm.LogF("คุณได้รับ Give gift box level ทั้งหมด %d กล่อง\n", countGiftCache)
 }
