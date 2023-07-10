@@ -51,7 +51,7 @@ func main() {
 	if hour <= 9 && minute <= 00 {
 		println("เข้างาน")
 		JOIN_WORK = true
-	} else if hour >= 9 && minute >= 30 {
+	} else if hour >= 9 && minute > 30 {
 		println("ขาดงาน")
 		JOIN_WORK = false
 	} else {
