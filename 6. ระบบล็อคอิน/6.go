@@ -33,7 +33,7 @@ func main() {
 	countPass := 0
 	LoginNow := time.Now()
 	expDateLockLogin := time.Now()
-	Cooldown := 60 * time.Second
+	Cooldown := 30 * time.Minute
 	lockClient := false
 	isLoginSuccess := false
 

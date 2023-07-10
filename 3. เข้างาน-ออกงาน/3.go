@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
+	"time"
 )
 
 func println(a ...interface{}) {
@@ -29,29 +29,20 @@ func main() {
 
 	timeParts := strings.Split(time_input, ":")
 
-	if len(timeParts) != 2 {
-		println("รูปแบบเวลาไม่ถูกต้อง")
-		return
-	}
+	timeInput := timeParts[0] + ":" + timeParts[1]
+	time_Current, err := time.Parse("15:04", timeInput)
 
-	hour, err := strconv.Atoi(timeParts[0])
 	if err != nil {
-		println("ชั่วโมงไม่ถูกต้อง")
-		return
-	}
-
-	minute, err := strconv.Atoi(timeParts[1])
-	if err != nil {
-		println("นาทีไม่ถูกต้อง")
+		fmt.Println("เกิดข้อผิดพลาดในการแปลงเวลา:", err)
 		return
 	}
 
 	JOIN_WORK := false
 
-	if hour <= 9 && minute <= 00 {
+	if time_Current.Hour() <= 8 && time_Current.Minute() <= 59 || time_Current.Hour() == 9 && time_Current.Minute() == 0 {
 		println("เข้างาน")
 		JOIN_WORK = true
-	} else if hour >= 9 && minute >= 30 {
+	} else if time_Current.Hour() >= 9 && time_Current.Minute() >= 30 {
 		println("ขาดงาน")
 		JOIN_WORK = false
 	} else {
@@ -65,36 +56,25 @@ func main() {
 		Scan(&time_out_input)
 		timeParts := strings.Split(time_out_input, ":")
 
-		if len(timeParts) != 2 {
-			println("รูปแบบเวลาไม่ถูกต้อง")
-			return
-		}
-
-		hour_out, err := strconv.Atoi(timeParts[0])
+		timeInput := timeParts[0] + ":" + timeParts[1]
+		time_Current_Out, err := time.Parse("15:04", timeInput)
 		if err != nil {
-			println("ชั่วโมงไม่ถูกต้อง")
+			fmt.Println("เกิดข้อผิดพลาดในการแปลงเวลา:", err)
 			return
 		}
 
-		minute_out, err := strconv.Atoi(timeParts[1])
-		if err != nil {
-			println("นาทีไม่ถูกต้อง")
-			return
-		}
-
-		if hour_out <= 15 && minute_out <= 59 {
+		if time_Current_Out.Hour() <= 15 && time_Current_Out.Minute() <= 59 {
 			println("ขาดงาน")
 		} else {
 			JOIN_WORK = true
 		}
-
-		if hour_out >= 16 && minute_out >= 00 && hour_out <= 18 && minute_out <= 00 {
+		
+		if time_Current_Out.Hour() >= 16 && time_Current_Out.Minute() <= 59 && time_Current_Out.Hour() <= 17 && time_Current_Out.Minute() <= 59 {
 			println("เลิกงาน")
 		} else {
-			if hour_out >= 18 && minute_out > 0 {
+			if time_Current_Out.Hour() >= 18 {
 				println("OT")
 			}
 		}
-
-	}
+	} 
 }
