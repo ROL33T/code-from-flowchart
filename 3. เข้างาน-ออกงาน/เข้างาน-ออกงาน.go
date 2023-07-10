@@ -6,10 +6,6 @@ import (
 	"strings"
 )
 
-const (
-	YYYYMMDD = "2006-01-02"
-)
-
 func println(a ...interface{}) {
 	fmt.Println(a...)
 }
