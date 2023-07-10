@@ -59,7 +59,7 @@ func main() {
 		timeInput := timeParts[0] + ":" + timeParts[1]
 		time_Current_Out, err := time.Parse("15:04", timeInput)
 		if err != nil {
-			fmt.Println("เกิดข้อผิดพลาดในการแปลงเวลา:", err)
+			println("เกิดข้อผิดพลาดในการแปลงเวลา:", err)
 			return
 		}
 
