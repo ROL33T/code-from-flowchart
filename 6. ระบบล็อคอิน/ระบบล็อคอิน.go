@@ -9,8 +9,12 @@ import (
 	"time"
 )
 
-func print(a ...interface{}) {
+func println(a ...interface{}) {
 	fmt.Println(a...)
+}
+
+func print(a ...interface{}) {
+	fmt.Print(a...)
 }
 
 func Scan(a ...interface{}) {
@@ -20,6 +24,7 @@ func Scan(a ...interface{}) {
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
+
 func main() {
 	userinput := ""
 	passwordinput := ""
@@ -39,7 +44,7 @@ func main() {
 
 		if LoginNow.After(expDateLockLogin) {
 			if lockClient {
-				print("ระบบได้ทำการปลดล็อค User ของคุณเรียบร้อยแล้ว")
+				println("ระบบได้ทำการปลดล็อค User ของคุณเรียบร้อยแล้ว")
 				countLogin = 0
 				countPass = 0
 				expDateLockLogin = time.Now()
@@ -56,7 +61,7 @@ func main() {
 
 					if userinput == user {
 						if passwordinput == password {
-							print("login ok")
+							println("login ok")
 							countLogin = 0
 							countPass = 0
 							expDateLockLogin = time.Now()
@@ -70,7 +75,7 @@ func main() {
 								expDateLockLogin = time.Now().Add(Cooldown)
 								lockClient = true
 							} else {
-								print("รหัสคุณผิดพลาด กรุณาลองใหม่อีกครั้งที่", countPass)
+								println("รหัสคุณผิดพลาด กรุณาลองใหม่อีกครั้งที่", countPass)
 							}
 						}
 					} else {
@@ -79,7 +84,7 @@ func main() {
 							expDateLockLogin = time.Now().Add(Cooldown)
 							lockClient = true
 						} else {
-							print("UserName คุณผิดพลาด กรุณาลองใหม่อีกครั้ง", countLogin)
+							println("UserName คุณผิดพลาด กรุณาลองใหม่อีกครั้ง", countLogin)
 						}
 					}
 				} else {
@@ -112,7 +117,7 @@ func main() {
 				if seconds >= 0 {
 					durationStr += fmt.Sprintf("%d วินาที", seconds)
 				}
-				print("ระบบทำการล็อค คุณต้องรอ เวลาถึง ", durationStr, " ถึงจะปลดล็อกให้")
+				println("ระบบทำการล็อค คุณต้องรอ เวลาถึง ", durationStr, " ถึงจะปลดล็อกให้")
 			}
 			time.Sleep(1000 * time.Millisecond)
 		}

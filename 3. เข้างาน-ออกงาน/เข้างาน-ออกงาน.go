@@ -1,9 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+const (
+	YYYYMMDD = "2006-01-02"
+)
+
+func println(a ...interface{}) {
+	fmt.Println(a...)
+}
 
 func print(a ...interface{}) {
-	fmt.Println(a...)
+	fmt.Print(a...)
 }
 
 func Scan(a ...interface{}) {
@@ -15,41 +27,75 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
-	var t1 float64
-	print("กรุณาใส่เวลาเข้างาน: ") //เวลาเข้างาน
-	Scan(&t1)
+	time_input := ""
+	Scan(&time_input)
+
+	timeParts := strings.Split(time_input, ":")
+
+	if len(timeParts) != 2 {
+		println("รูปแบบเวลาไม่ถูกต้อง")
+		return
+	}
+
+	hour, err := strconv.Atoi(timeParts[0])
+	if err != nil {
+		println("ชั่วโมงไม่ถูกต้อง")
+		return
+	}
+
+	minute, err := strconv.Atoi(timeParts[1])
+	if err != nil {
+		println("นาทีไม่ถูกต้อง")
+		return
+	}
 
 	JOIN_WORK := false
 
-	if t1 <= 9.00 {
-		print("เข้างาน")
+	if hour <= 9 && minute <= 00 {
+		println("เข้างาน")
 		JOIN_WORK = true
-
-	} else if t1 >= 9.30 {
-		print("ขาดงาน")
+	} else if hour >= 9 && minute >= 30 {
+		println("ขาดงาน")
 		JOIN_WORK = false
 	} else {
-		print("สาย")
+		println("สาย")
 		JOIN_WORK = true
 	}
 
 	if JOIN_WORK {
-
-		var t2 float64
 		print("กรุณาใส่เวลาออกงาน: ") //เวลาออกงาน
-		Scan(&t2)
+		time_out_input := ""
+		Scan(&time_out_input)
+		timeParts := strings.Split(time_out_input, ":")
 
-		if t2 <= 15.59 {
-			print("ขาดงาน")
+		if len(timeParts) != 2 {
+			println("รูปแบบเวลาไม่ถูกต้อง")
+			return
+		}
+
+		hour_out, err := strconv.Atoi(timeParts[0])
+		if err != nil {
+			println("ชั่วโมงไม่ถูกต้อง")
+			return
+		}
+
+		minute_out, err := strconv.Atoi(timeParts[1])
+		if err != nil {
+			println("นาทีไม่ถูกต้อง")
+			return
+		}
+
+		if hour_out <= 15 && minute_out <= 59 {
+			println("ขาดงาน")
 		} else {
 			JOIN_WORK = true
 		}
 
-		if t2 >= 16.00 && t2 <= 18.00 {
-			print("เลิกงาน")
+		if hour_out >= 16 && minute_out >= 00 && hour_out <= 18 && minute_out <= 00 {
+			println("เลิกงาน")
 		} else {
-			if t2 > 18.00 {
-				print("OT")
+			if hour_out >= 18 && minute_out > 0 {
+				println("OT")
 			}
 		}
 
