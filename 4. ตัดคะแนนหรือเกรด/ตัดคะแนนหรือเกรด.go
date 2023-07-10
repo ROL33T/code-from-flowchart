@@ -61,16 +61,16 @@ func main() {
 	} else {
 		if a >= 40 {
 			if b >= 10 {
-				d = 5
+				c = 5
 				f = a + b + c + d
 				g = calculateGrade(f)
 			} else {
-				d = 0
+				c = 0
 				f = a + b + c + d
 				g = calculateGrade(f)
 			}
 		} else {
-			d = 0
+			c = 0
 			f = a + b + c + d
 			g = calculateGrade(f)
 		}
