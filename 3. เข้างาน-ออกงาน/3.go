@@ -68,7 +68,7 @@ func main() {
 		} else {
 			JOIN_WORK = true
 		}
-		
+
 		if time_Current_Out.Hour() >= 16 && time_Current_Out.Minute() <= 59 && time_Current_Out.Hour() <= 17 && time_Current_Out.Minute() <= 59 {
 			println("เลิกงาน")
 		} else {
@@ -76,5 +76,5 @@ func main() {
 				println("OT")
 			}
 		}
-	} 
+	}
 }
