@@ -23,6 +23,7 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
+	print("กรุณาใส่เวลาเข้างาน: ") //เวลาออกงาน
 	time_input := ""
 	Scan(&time_input)
 
