@@ -17,7 +17,7 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 
 // สร้างคำสั่ง SQL สำหรับการเลือกข้อมูล
-$sql = "SELECT * FROM users WHERE username = '$username' OR password = '$password'"; // แก้ไขตามตารางและฟิลด์ที่เกี่ยวข้อง
+$sql = "SELECT * FROM users WHERE username = '$username'"; // แก้ไขตามตารางและฟิลด์ที่เกี่ยวข้อง
 
 // ส่งคำสั่ง SQL ไปยังฐานข้อมูล
 $result = mysqli_query($conn, $sql);
