@@ -21,6 +21,7 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
+	//หาต้องการจำแนกตัวเลข 0-999 เป็นarray 3ชุด โดยชุดแรกเก็บเลขคู่,ชุดที่สองเป็นเลขที่หาร7ลงตัว,ชุดที่สามเป็นตัวเลขที่ลงท้ายด้วย0เท่านั้น หลังจำแนกข้อมูลให้แสดงข้อมูลทั้ง3ออกมา
 
 	var ARRAY_NUMBER_EVEN []int
 	var ARRAY_NUMBER_ELEVEN []int
@@ -42,8 +43,8 @@ func main() {
 
 	}
 
-	println(ARRAY_NUMBER_EVEN)
-	println(ARRAY_NUMBER_ELEVEN)
-	println(ARRAY_NUMBER_ZERO)
+	println("เลขคู่ทั้งหมด : \n", ARRAY_NUMBER_EVEN)
+	println("เลข7ที่หารลงตัวทั้งหมด : \n", ARRAY_NUMBER_ELEVEN)
+	println("หาเลขที่ลงท้ายด้วย 0ตัวทั้งหมด : \n", ARRAY_NUMBER_ZERO)
 
 }
