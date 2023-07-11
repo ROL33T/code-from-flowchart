@@ -93,11 +93,12 @@ func LoginAndRegister(username string, password string, mode string) {
 
 }
 
+
 func main() {
 	mode := ""
 	println("Login : A | Register : B ") //เวลาเข้างาน
 	Scan(&mode)
-
+	
 	userinput := ""
 	passwordinput := ""
 
