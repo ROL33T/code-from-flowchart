@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func println(a ...interface{}) {
@@ -26,12 +27,29 @@ func main() {
 	*/
 
 	string_WhatTheCat := "JennylovedhercatsSheownedsixofthemJennyspentallherdayswiththecatsHerfriendsworriedaboutherYoushouldgooutmoretheysaidIcantstandleavingmycatsalonerepliedJennyOnedayJennymetamanatworkHewasfunnyandhandsomeJennystartedgoingoutwithhimalotShethoughthewasperfectJennyinvitedhimtoherhouseShewasveryexcitedHesgoingtolovemycatsshethoughtThemanwalkedintoherhouse"
+	println("ใส่ string ที่คุณต้องการ :")
+	string_What := ""
+	Scan(&string_What)
 
-	string_number := len(string_WhatTheCat)
-	if string_number > 0 {
-		printf("พบ ตัวหนังสือทั้งหมด: %d\n", string_number)
+	string_count := strings.Count(string_WhatTheCat, string_What)
+
+	startIndex := 0
+
+	for {
+		index := strings.Index(string_WhatTheCat[startIndex:], string_What)
+		if index == -1 {
+			break
+		}
+
+		printf("พบคำว่า %s ที่ตำแหน่งที่: %d\n", string_What, startIndex+index)
+
+		startIndex += index + len(string_What)
+	}
+
+	if string_count > 0 {
+		printf("พบ %s จำนวนทั้งหมด: %d\n", string_What, string_count)
 	} else {
-		print("ไม่พบ")
+		printf("ไม่พบ %s", string_What)
 	}
 
 }
