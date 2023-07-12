@@ -55,6 +55,7 @@ Sun Mon Tue Wed Thu Fri Sat
 
 		// พิมพ์หัวของวัน
 		printf(calendarFormat, "")
+		//printf("\n------------Days------------\n")
 
 		// พิมพ์วันของสัปดาห์แรก
 		firstWeekday := firstDayOfMonth.Weekday()
@@ -65,9 +66,9 @@ Sun Mon Tue Wed Thu Fri Sat
 		// พิมพ์วันที่
 		for day := 1; day <= numDays; day++ {
 			if day == time.Now().Day() && month == time.Now().Month() {
-				printf("")
+				printf("%3d ", day) // 12
 			} else {
-				printf("%3d ", day)
+				printf("%3d ", day) // 1-11 13-31
 			}
 
 			// เมื่อเป็นวันอาทิตย์ ขึ้นบรรทัดใหม่
