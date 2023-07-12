@@ -32,7 +32,7 @@ func main() {
 		count := num/2 + 1
 
 		for k := 1; k <= num; k++ {
-			fmt.Printf("%s", words[count])
+			printf("%s", words[count])
 			if k <= num/2 {
 				count--
 			} else {
