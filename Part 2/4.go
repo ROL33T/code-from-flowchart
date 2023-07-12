@@ -24,7 +24,7 @@ func printf(format string, a ...interface{}) {
 
 func main() {
 	//เขียนการทำงานระบบแสดงวันหากได้รับข้อมูลวันที่ Ex. Input -> 01/07/2023 Output -> Saturday
-	println("กรุณาใส่ วัน:เดือน:ปี : ")
+	println("กรุณาใส่ วัน/เดือน/ปี : ")
 	time_input := ""
 	Scan(&time_input)
 
