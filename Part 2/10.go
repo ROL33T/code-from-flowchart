@@ -19,35 +19,35 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
+	rows := 9
+	space := rows / 2
+	num := 1
 
-	/*
-			เขียนโค๊ดแสดงรูป
-		    x
-		   oxo
-		  aoxoa
-		 waoxoaw
-		qwaoxoawq
-		 waoxoaw
-		  aoxoa
-		   oxo
-		    x
+	words := []string{"", "x", "o", "a", "w", "q"}
 
-		โดยใช้ Loop-for เท่านั้น
+	for i := 1; i <= rows; i++ {
+		for j := 1; j <= space; j++ {
+			printf(" ")
+		}
+		count := num/2 + 1
 
-	*/
-	lines := []string{
-		"     x",
-		"    oxo",
-		"   aoxoa",
-		"  waoxoaw",
-		" qwaoxoawq",
-		"  waoxoaw",
-		"   aoxoa",
-		"    oxo",
-		"     x",
-	}
+		for k := 1; k <= num; k++ {
+			fmt.Printf("%s", words[count])
+			if k <= num/2 {
+				count--
+			} else {
+				count++
+			}
+		}
 
-	for _, line := range lines {
-		println(line)
+		println()
+
+		if i <= rows/2 {
+			space = space - 1
+			num = num + 2
+		} else {
+			space = space + 1
+			num = num - 2
+		}
 	}
 }
