@@ -25,6 +25,10 @@ func printf(format string, a ...interface{}) {
 }
 
 func main() {
+
+	/*
+		เขียนเครื่องคิดเลข + - * / ที่สามารถคำนวณได้หลายรอบและหากได้รับคำว่า reset ระบบจะรีการคำนวณเป็น 0 และถ้าได้รับคำว่า exit คือการออกจากระบบ
+	*/
 	scanner := bufio.NewScanner(os.Stdin)
 
 	result := 0
