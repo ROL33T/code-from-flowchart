@@ -30,22 +30,21 @@ func main() {
 	result := 0
 	exit := false
 
-	println("เครื่องคิดเลข")
-	println("ใช้คำสั่ง 'clear' เพื่อล้างหน้าต่าง TERMINAL")
-	println("ใช้คำสั่ง 'reset' เพื่อรีเซ็ตค่า")
-	println("ใช้คำสั่ง 'exit' เพื่อออกจากโปรแกรม")
-
 	for !exit {
+		println("เครื่องคิดเลข")
+		println("ใช้คำสั่ง 'clear หรือ cls' เพื่อล้างหน้าต่าง TERMINAL")
+		println("ใช้คำสั่ง 'reset' เพื่อรีเซ็ตค่า")
+		println("ใช้คำสั่ง 'exit' เพื่อออกจากโปรแกรม")
 		println("เช่น 40 + 40 หรือ 20 - 40 หรือ 10 * 40 หรือ 1 / 40")
-		print("ป้อนตัวดำเนินการและตัวเลข: ")
+		print("ป้อนตัวดำเนินการและตัวเลข หรือ คำสั่ง: ")
 		scanner.Scan()
-		input := scanner.Text()
+		input := strings.ToLower(scanner.Text())
 
 		if input == "reset" {
 			result = 0
 			println("ค่าถูกรีเซ็ตเป็น 0")
 			continue
-		} else if input == "clear" {
+		} else if input == "clear" || input == "cls" {
 			for i := 1; i <= 15; i++ {
 				println("")
 			}
