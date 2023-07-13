@@ -26,9 +26,11 @@ func main() {
 	words := []string{"", "x", "o", "a", "w", "q"}
 
 	for i := 1; i <= rows; i++ {
+
 		for j := 1; j <= space; j++ {
 			printf(" ")
 		}
+
 		count := num/2 + 1
 
 		for k := 1; k <= num; k++ {
@@ -43,11 +45,13 @@ func main() {
 		println()
 
 		if i <= rows/2 {
-			space = space - 1
-			num = num + 2
+			space--
+			num += 2
 		} else {
-			space = space + 1
-			num = num - 2
+			space++
+			num -= 2
 		}
+
 	}
+
 }
