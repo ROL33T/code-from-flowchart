@@ -69,7 +69,7 @@ func printf(format string, a ...interface{}) {
 
 func showBoard(board [][]string) {
 	for _, row := range board {
-		fmt.Println(row)
+		println(row)
 	}
 }
 
