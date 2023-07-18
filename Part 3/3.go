@@ -77,7 +77,12 @@ func getPlayerMove(turn string) int {
 	var move int
 	fmt.Printf("Enter your Turn %s move (1-9): ", turn)
 	fmt.Scan(&move)
-	return move
+	if move >= 1 && move <= 9 {
+		return move
+	} else {
+		return 0
+	}
+
 }
 
 func checkWin(board [][]string, symbol string) bool {
@@ -159,18 +164,23 @@ func main() {
 		} else {
 			move := getPlayerMove(Turn)
 
-			intKey, intVal := GetKey(move)
-
-			if isMoveAvailable(board, move) {
-				if Turn == "X" {
-					board[intKey][intVal] = "X"
-					Turn = "O"
-				} else {
-					board[intKey][intVal] = "O"
-					Turn = "X"
-				}
+			if move == 0 {
+				println("ช่องนี้ไม่มีอยู่จริง!")
 			} else {
-				println("ช่องนี้ไม่ว่างกรุณาเลือกช่องใหม่")
+
+				intKey, intVal := GetKey(move)
+
+				if isMoveAvailable(board, move) {
+					if Turn == "X" {
+						board[intKey][intVal] = "X"
+						Turn = "O"
+					} else {
+						board[intKey][intVal] = "O"
+						Turn = "X"
+					}
+				} else {
+					println("ช่องนี้ไม่ว่างกรุณาเลือกช่องใหม่")
+				}
 			}
 		}
 		showBoard(board)
