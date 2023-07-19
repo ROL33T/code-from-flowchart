@@ -26,21 +26,15 @@ type NumberOdd struct {
 }
 
 func main() {
-	a := 0 //นับเลขคู่
-	b := 0 //นับเลขคี่
 	var numbers_even []NumberEven
 	var numbers_odd []NumberOdd
 
 	for i := 1; i <= 100; i++ {
 
 		if i%2 == 0 {
-			a++
-			//println("คู่", i)
 			numbers_even = append(numbers_even, NumberEven{Value: int64(i)})
 
 		} else {
-			b++
-			//println("คี่", i)
 			numbers_odd = append(numbers_odd, NumberOdd{Value: int64(i)})
 		}
 

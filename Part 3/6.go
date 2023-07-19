@@ -28,6 +28,11 @@ func main() {
 	input_two := 0
 	Scan(&input_two)
 
+	if input_one > input_two {
+		println("ใส่ตัวเลขไม่ถูกต้อง")
+		return
+	}
+
 	for i := input_one; i <= input_two; i++ {
 		if i%7 == 0 {
 			printf("%d, ", i)
