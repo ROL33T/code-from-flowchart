@@ -10,23 +10,24 @@ func print(a ...interface{}) {
 	fmt.Print(a...)
 }
 
-func Scan(a ...interface{}) {
-	fmt.Scan(a...)
-}
-
 func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
 func main() {
+	var input_one, input_two int64
 
 	println("กรุณาใส่ Input One |  : ")
-	input_one := 0
-	Scan(&input_one)
+	if _, err := fmt.Scan(&input_one); err != nil {
+		println("ไม่สามารถอ่านค่า Input One ได้")
+		return
+	}
 
 	println("กรุณาใส่ Input Two |  : ")
-	input_two := 0
-	Scan(&input_two)
+	if _, err := fmt.Scan(&input_two); err != nil {
+		println("ไม่สามารถอ่านค่า Input Two ได้")
+		return
+	}
 
 	if input_one > input_two {
 		println("ใส่ตัวเลขไม่ถูกต้อง")
