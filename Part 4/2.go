@@ -73,6 +73,7 @@ func main() {
 
 	if _, err := fmt.Scan(&string_lower_find_one); err != nil {
 		println("ไม่สามารถอ่านค่า Input One ได้")
+		time.Sleep(2 * time.Second)
 		return
 	}
 
@@ -85,6 +86,7 @@ func main() {
 
 		if _, err := fmt.Scan(&string_lower_find_two); err != nil {
 			println("ไม่สามารถอ่านค่า Input Two ได้")
+			time.Sleep(2 * time.Second)
 			return
 		}
 
@@ -102,10 +104,12 @@ func main() {
 			}
 		} else {
 			println("อ่าน String ได้แค่ 1 ตัวเท่านั้น Input One")
+			time.Sleep(2 * time.Second)
 			return
 		}
 	} else {
 		println("อ่าน String ได้แค่ 1 ตัวเท่านั้น Input Two")
+		time.Sleep(2 * time.Second)
 		return
 	}
 	time.Sleep(5 * time.Second)

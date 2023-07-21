@@ -105,6 +105,7 @@ func main() {
 
 	} else {
 		println("กรุณากรอกให้ครบ 5 ตัว")
+		time.Sleep(2 * time.Second)
 		return
 	}
 	time.Sleep(5 * time.Second)
