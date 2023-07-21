@@ -74,7 +74,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	randomString := generateRandomString(randomStringLength)
-
+	println("กรุณาใส่ String 5 ตัวเท่านั้น |  : ")
 	string_What := ""
 	if _, err := fmt.Scan(&string_What); err != nil {
 		println("ไม่สามารถอ่านค่า Input String ได้")
