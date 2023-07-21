@@ -23,6 +23,15 @@ func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
+func Wait(d time.Duration) {
+	time.Sleep(d)
+}
+
+const (
+	randomStringChars  = "abcdefghijklmnopqrstuvwxyz"
+	randomStringLength = 1000
+)
+
 func generateRandomString(length int) string {
 	var sb strings.Builder
 	sb.Grow(length)
@@ -64,17 +73,10 @@ func findMaxMinCounts(str, sub string) (maxCount, minCount int) {
 	return maxCount, minCount
 }
 
-const (
-	randomStringChars  = "abcdefghijklmnopqrstuvwxyz"
-	randomStringLength = 1000
-)
-
 func main() {
-
 	rand.Seed(time.Now().UnixNano())
 
 	randomString := generateRandomString(randomStringLength)
-
 	printf("ตัวอักษรทั้งหมด:\n[%s] \n", randomString)
 
 	println("กรุณาใส่ String 5 ตัวเท่านั้น |  : ")
@@ -98,7 +100,12 @@ func main() {
 			}
 		}
 
-		string_count := strings.Count(randomString, string_what_lower)
+		characterCounts := make(map[rune]int)
+		for _, char := range randomString {
+			characterCounts[char]++
+		}
+
+		string_count := characterCounts[rune(string_what_lower[0])]
 
 		if string_count > 0 {
 			printf("พบ %s %d จำนวน \n", string_what_lower, string_count)
@@ -112,8 +119,8 @@ func main() {
 
 	} else {
 		println("กรุณากรอกให้ครบ 5 ตัว")
-		time.Sleep(2 * time.Second)
+		Wait(2 * time.Second)
 		return
 	}
-	time.Sleep(5 * time.Second)
+	Wait(5 * time.Second)
 }

@@ -24,6 +24,10 @@ func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
+func Wait(d time.Duration) {
+	time.Sleep(d)
+}
+
 func generateRandomString(length int) string {
 	var sb strings.Builder
 	sb.Grow(length)
@@ -73,6 +77,6 @@ func main() {
 		printf("%c: %d\n", char, count)
 	}
 
-	time.Sleep(5 * time.Second)
+	Wait(5 * time.Second)
 
 }

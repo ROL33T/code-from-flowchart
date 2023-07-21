@@ -23,6 +23,10 @@ func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
+func Wait(d time.Duration) {
+	time.Sleep(d)
+}
+
 func generateRandomString(length int) string {
 	var sb strings.Builder
 	sb.Grow(length)
@@ -51,7 +55,7 @@ func main() {
 	string_What := ""
 	if _, err := fmt.Scan(&string_What); err != nil {
 		println("ไม่สามารถอ่านค่า Input One ได้")
-		time.Sleep(2 * time.Second)
+		Wait(2 * time.Second)
 		return
 	}
 
@@ -81,8 +85,8 @@ func main() {
 
 	} else {
 		println("กรุณากรอกให้ครบ 5 ตัว")
-		time.Sleep(2 * time.Second)
+		Wait(2 * time.Second)
 		return
 	}
-	time.Sleep(5 * time.Second)
+	Wait(5 * time.Second)
 }

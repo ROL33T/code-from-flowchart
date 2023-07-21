@@ -24,6 +24,10 @@ func printf(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
 }
 
+func Wait(d time.Duration) {
+	time.Sleep(d)
+}
+
 func generateRandomString(length int) string {
 	var sb strings.Builder
 	sb.Grow(length)
@@ -67,13 +71,13 @@ func main() {
 
 	find_string_one := ""
 
-	println("กรุณาใส่ Input Two |  : ")
+	println("กรุณาใส่ Input String 2 ตัวเท่านั้น |  : ")
 
 	string_lower_find_one := strings.ToLower(find_string_one)
 
 	if _, err := fmt.Scan(&string_lower_find_one); err != nil {
 		println("ไม่สามารถอ่านค่า Input One ได้")
-		time.Sleep(2 * time.Second)
+		Wait(2 * time.Second)
 		return
 	}
 
@@ -96,19 +100,19 @@ func main() {
 
 		if string_count > 0 {
 			printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_find_one, string_count)
-			time.Sleep(2 * time.Second)
+			Wait(2 * time.Second)
 			return
 		} else {
 			printf("ไม่พบ %s", string_lower_find_one)
-			time.Sleep(2 * time.Second)
+			Wait(2 * time.Second)
 			return
 		}
 
 	} else {
 		println("กรุณากรอกให้ครบ 2 ตัว")
-		time.Sleep(2 * time.Second)
+		Wait(2 * time.Second)
 		return
 	}
 
-	time.Sleep(5 * time.Second)
+	Wait(5 * time.Second)
 }
