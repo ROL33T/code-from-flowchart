@@ -73,6 +73,14 @@ func findMaxMinCounts(str, sub string) (maxCount, minCount int) {
 	return maxCount, minCount
 }
 
+func findDuplicateCharacters(input string) map[rune]int {
+	counts := make(map[rune]int)
+	for _, char := range input {
+		counts[char]++
+	}
+	return counts
+}
+
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
@@ -83,6 +91,7 @@ func main() {
 	string_What := ""
 	if _, err := fmt.Scan(&string_What); err != nil {
 		println("ไม่สามารถอ่านค่า Input String ได้")
+		Wait(2 * time.Second)
 		return
 	}
 
@@ -90,31 +99,44 @@ func main() {
 
 	if len(string_What) == 5 {
 
-		countOfAsterisk := strings.Count(string_what_lower, "*")
+		if string_what_lower >= "a" || string_what_lower <= "z" || string_what_lower == "*" {
+			countOfAsterisk := strings.Count(string_what_lower, "*")
 
-		if strings.Contains(string_what_lower, "*") {
-			for i := 0; i < countOfAsterisk; i++ {
-				randomstringreplace := string(randomStringChars[rand.Intn(len(randomStringChars))])
-				string_what_lower = strings.Replace(string_what_lower, "*", randomstringreplace, 1)
-				time.Sleep(1 * time.Microsecond)
+			if strings.Contains(string_what_lower, "*") {
+				for i := 0; i < countOfAsterisk; i++ {
+					fmt.Printf("กรอกค่าที่จะแทนที่ * ที่ตำแหน่งที่ %d: ", i+1)
+					var replacement string
+					if _, err := fmt.Scan(&replacement); err != nil {
+						println("ไม่สามารถอ่านค่า Input String ได้")
+						return
+					}
+					if replacement >= "a" && replacement <= "z" {
+						string_what_lower = strings.Replace(string_what_lower, "*", replacement, 1)
+
+					} else {
+						println("A-Z เท่านั้นพี่ชาย")
+						Wait(2 * time.Second)
+						return
+					}
+
+				}
 			}
-		}
 
-		characterCounts := make(map[rune]int)
-		for _, char := range randomString {
-			characterCounts[char]++
-		}
+			string_count := strings.Count(randomString, string_what_lower)
 
-		string_count := characterCounts[rune(string_what_lower[0])]
+			if string_count > 0 {
+				printf("พบ %s %d จำนวน \n", string_what_lower, string_count)
 
-		if string_count > 0 {
-			printf("พบ %s %d จำนวน \n", string_what_lower, string_count)
-
-			maxCount, minCount := findMaxMinCounts(randomString, string_what_lower)
-			printf("มากที่สุด: %d\n", maxCount)
-			printf("น้อยที่สุด: %d\n", minCount)
+				maxCount, minCount := findMaxMinCounts(randomString, string_what_lower)
+				printf("มากที่สุด: %d\n", maxCount)
+				printf("น้อยที่สุด: %d\n", minCount)
+			} else {
+				printf("ไม่พบ %s string นี้ \n", string_what_lower)
+			}
 		} else {
-			printf("ไม่พบ %s string นี้ \n", string_what_lower)
+			println("A-Z และ * เท่านั้นพี่ชาย")
+			Wait(2 * time.Second)
+			return
 		}
 
 	} else {

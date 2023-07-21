@@ -61,32 +61,40 @@ func main() {
 
 	string_lower := strings.ToLower(string_What)
 
-	if len(string_lower) == 5 {
-		string_count := strings.Count(randomString, string_lower)
+	if string_lower >= "a" || string_lower <= "z" {
 
-		startIndex := 0
+		if len(string_lower) == 5 {
+			string_count := strings.Count(randomString, string_lower)
 
-		for {
-			index := strings.Index(randomString[startIndex:], string_lower)
-			if index == -1 {
-				break
+			startIndex := 0
+
+			for {
+				index := strings.Index(randomString[startIndex:], string_lower)
+				if index == -1 {
+					break
+				}
+
+				printf("พบคำว่า %s ที่ตำแหน่งที่: %d\n", string_lower, startIndex+index)
+
+				startIndex += index + len(string_lower)
 			}
 
-			printf("พบคำว่า %s ที่ตำแหน่งที่: %d\n", string_lower, startIndex+index)
+			if string_count > 0 {
+				printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower, string_count)
+			} else {
+				printf("ไม่พบ %s", string_lower)
+			}
 
-			startIndex += index + len(string_lower)
-		}
-
-		if string_count > 0 {
-			printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower, string_count)
 		} else {
-			printf("ไม่พบ %s", string_lower)
+			println("กรุณากรอกให้ครบ 5 ตัว")
+			Wait(2 * time.Second)
+			return
 		}
-
 	} else {
-		println("กรุณากรอกให้ครบ 5 ตัว")
+		println("A-Z เท่านั้นพี่ชาย")
 		Wait(2 * time.Second)
 		return
 	}
+
 	Wait(5 * time.Second)
 }

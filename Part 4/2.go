@@ -81,35 +81,42 @@ func main() {
 		return
 	}
 
-	if len(string_lower_find_one) == 2 {
+	if string_lower_find_one >= "a" || string_lower_find_one <= "z" {
 
-		string_count := strings.Count(randomString, string_lower_find_one)
+		if len(string_lower_find_one) == 2 {
 
-		startIndex := 0
+			string_count := strings.Count(randomString, string_lower_find_one)
 
-		for {
-			index := strings.Index(randomString[startIndex:], string_lower_find_one)
-			if index == -1 {
-				break
+			startIndex := 0
+
+			for {
+				index := strings.Index(randomString[startIndex:], string_lower_find_one)
+				if index == -1 {
+					break
+				}
+
+				printf("พบคำว่า %s ที่ตำแหน่งที่: %d\n", string_lower_find_one, startIndex+index)
+
+				startIndex += index + len(string_lower_find_one)
 			}
 
-			printf("พบคำว่า %s ที่ตำแหน่งที่: %d\n", string_lower_find_one, startIndex+index)
+			if string_count > 0 {
+				printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_find_one, string_count)
+				Wait(2 * time.Second)
+				return
+			} else {
+				printf("ไม่พบ %s", string_lower_find_one)
+				Wait(2 * time.Second)
+				return
+			}
 
-			startIndex += index + len(string_lower_find_one)
-		}
-
-		if string_count > 0 {
-			printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_find_one, string_count)
-			Wait(2 * time.Second)
-			return
 		} else {
-			printf("ไม่พบ %s", string_lower_find_one)
+			println("กรุณากรอกให้ครบ 2 ตัว")
 			Wait(2 * time.Second)
 			return
 		}
-
 	} else {
-		println("กรุณากรอกให้ครบ 2 ตัว")
+		println("A-Z เท่านั้นพี่ชาย")
 		Wait(2 * time.Second)
 		return
 	}
