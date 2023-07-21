@@ -63,11 +63,11 @@ func main() {
 
 	randomString := generateRandomString(randomStringLength)
 
+	printf("ตัวอักษรทั้งหมด:\n[%s] \n", randomString)
+
 	sortedString := sortString(randomString)
 
 	counts := countCharacters(sortedString)
-
-	println("ตัวอักษรทั้งหมด:")
 
 	for char, count := range counts {
 		printf("%c: %d\n", char, count)

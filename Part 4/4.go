@@ -74,6 +74,9 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	randomString := generateRandomString(randomStringLength)
+
+	printf("ตัวอักษรทั้งหมด:\n[%s] \n", randomString)
+
 	println("กรุณาใส่ String 5 ตัวเท่านั้น |  : ")
 	string_What := ""
 	if _, err := fmt.Scan(&string_What); err != nil {

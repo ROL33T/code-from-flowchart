@@ -63,6 +63,8 @@ func main() {
 
 	randomString := generateRandomString(randomStringLength)
 
+	printf("ตัวอักษรทั้งหมด:\n[%s] \n", randomString)
+
 	sortedString := sortString(randomString)
 
 	find_string_one := ""
