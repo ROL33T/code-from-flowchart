@@ -100,7 +100,13 @@ func main() {
 					printf("%c: %d\n", char, count)
 				}
 			}
+		} else {
+			println("อ่าน String ได้แค่ 1 ตัวเท่านั้น Input One")
+			return
 		}
+	} else {
+		println("อ่าน String ได้แค่ 1 ตัวเท่านั้น Input Two")
+		return
 	}
 	time.Sleep(5 * time.Second)
 }
