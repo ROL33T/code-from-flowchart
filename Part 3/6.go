@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func println(a ...interface{}) {
@@ -31,7 +32,7 @@ func main() {
 		return
 	}
 
-	if input_two > input_one {
+	if input_one > input_two {
 		println("ใส่ตัวเลขไม่ถูกต้อง")
 		return
 	}
@@ -43,5 +44,5 @@ func main() {
 	}
 
 	println()
-
+	time.Sleep(10 * time.Second)
 }
