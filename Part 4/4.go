@@ -65,7 +65,7 @@ func findMaxMinCounts(str, sub string) (maxCount, minCount int) {
 }
 
 const (
-	randomStringChars  = "abcdefghijklmnopqrstuvwxyz*"
+	randomStringChars  = "abcdefghijklmnopqrstuvwxyz"
 	randomStringLength = 1000
 )
 
@@ -91,7 +91,11 @@ func main() {
 		countOfAsterisk := strings.Count(string_what_lower, "*")
 
 		if strings.Contains(string_what_lower, "*") {
-			string_what_lower = strings.Replace(string_what_lower, "*", string(randomStringChars[rand.Intn(26)]), countOfAsterisk)
+			for i := 0; i < countOfAsterisk; i++ {
+				randomstringreplace := string(randomStringChars[rand.Intn(len(randomStringChars))])
+				string_what_lower = strings.Replace(string_what_lower, "*", randomstringreplace, 1)
+				time.Sleep(1 * time.Microsecond)
+			}
 		}
 
 		string_count := strings.Count(randomString, string_what_lower)
