@@ -79,5 +79,5 @@ func main() {
 		println("กรุณากรอกให้ครบ 5 ตัว")
 		return
 	}
-
+	time.Sleep(5 * time.Second)
 }

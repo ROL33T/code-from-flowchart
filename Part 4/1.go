@@ -73,4 +73,6 @@ func main() {
 		printf("%c: %d\n", char, count)
 	}
 
+	time.Sleep(5 * time.Second)
+
 }
