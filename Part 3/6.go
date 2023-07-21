@@ -29,7 +29,7 @@ func main() {
 		return
 	}
 
-	if input_one > input_two {
+	if input_one > 0 && input_one < 100 || input_two > 0 && input_two < 100 {
 		println("ใส่ตัวเลขไม่ถูกต้อง")
 		return
 	}
