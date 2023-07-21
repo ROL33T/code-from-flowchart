@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func println(a ...interface{}) {
 	fmt.Println(a...)
@@ -29,7 +31,7 @@ func main() {
 		return
 	}
 
-	if input_one > 0 && input_one < 100 || input_two > 0 && input_two < 100 {
+	if input_two > input_one {
 		println("ใส่ตัวเลขไม่ถูกต้อง")
 		return
 	}
