@@ -65,8 +65,6 @@ func main() {
 
 	printf("ตัวอักษรทั้งหมด:\n[%s] \n", randomString)
 
-	sortedString := sortString(randomString)
-
 	find_string_one := ""
 
 	println("กรุณาใส่ Input Two |  : ")
@@ -79,40 +77,38 @@ func main() {
 		return
 	}
 
-	if len(string_lower_find_one) == 1 {
-		find_string_two := ""
+	if len(string_lower_find_one) == 2 {
 
-		println("กรุณาใส่ Input Two |  : ")
+		string_count := strings.Count(randomString, string_lower_find_one)
 
-		string_lower_find_two := strings.ToLower(find_string_two)
+		startIndex := 0
 
-		if _, err := fmt.Scan(&string_lower_find_two); err != nil {
-			println("ไม่สามารถอ่านค่า Input Two ได้")
-			time.Sleep(2 * time.Second)
-			return
-		}
-
-		if len(string_lower_find_two) == 1 {
-			counts := countCharacters(sortedString)
-
-			for char, count := range counts {
-				if string(char) == string_lower_find_one {
-					printf("%c: %d\n", char, count)
-				}
-
-				if string(char) == string_lower_find_two {
-					printf("%c: %d\n", char, count)
-				}
+		for {
+			index := strings.Index(randomString[startIndex:], string_lower_find_one)
+			if index == -1 {
+				break
 			}
+
+			printf("พบคำว่า %s ที่ตำแหน่งที่: %d\n", string_lower_find_one, startIndex+index)
+
+			startIndex += index + len(string_lower_find_one)
+		}
+
+		if string_count > 0 {
+			printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_find_one, string_count)
+			time.Sleep(2 * time.Second)
+			return
 		} else {
-			println("อ่าน String ได้แค่ 1 ตัวเท่านั้น Input One")
+			printf("ไม่พบ %s", string_lower_find_one)
 			time.Sleep(2 * time.Second)
 			return
 		}
+
 	} else {
-		println("อ่าน String ได้แค่ 1 ตัวเท่านั้น Input Two")
+		println("กรุณากรอกให้ครบ 2 ตัว")
 		time.Sleep(2 * time.Second)
 		return
 	}
+
 	time.Sleep(5 * time.Second)
 }
