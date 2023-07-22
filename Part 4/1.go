@@ -67,12 +67,12 @@ func main() {
 
 	randomString := generateRandomString(randomStringLength)
 
-	printf("ตัวอักษรทั้งหมด:\n[%s] \n", randomString)
+	printf("ตัวอักษรทั้งหมด:\n[%s]\n", randomString)
 
 	sortedString := sortString(randomString)
 
 	counts := countCharacters(sortedString)
-
+	Wait(1 * time.Second)
 	for char, count := range counts {
 		printf("%c: %d\n", char, count)
 	}
