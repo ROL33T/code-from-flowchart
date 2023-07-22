@@ -48,32 +48,6 @@ func generateRandomString(length int) string {
 	return sb.String()
 }
 
-func findMaxMinCounts(str, sub string) (maxCount, minCount int) {
-	startIndex := 0
-	maxCount = 0
-	minCount = len(str)
-
-	for {
-		index := strings.Index(str[startIndex:], sub)
-		if index == -1 {
-			break
-		}
-
-		count := strings.Count(str[startIndex:], sub)
-		if count > maxCount {
-			maxCount = count
-		}
-
-		if count < minCount {
-			minCount = count
-		}
-
-		startIndex += index + len(sub)
-	}
-
-	return maxCount, minCount
-}
-
 func main() {
 	rand.Seed(time.Now().UnixNano())
 	ARRAY_MAX_TO_MIN := map[string]int{}
