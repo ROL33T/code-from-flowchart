@@ -209,7 +209,7 @@ func main() {
 		if len(string_what_lower) == 5 {
 			if string_what_lower >= "a" || string_what_lower <= "z" || string_what_lower == "*" {
 				countOfAsterisk := countCharacters_A(string_what_lower, "*")
-				if countOfAsterisk == 1 {
+				if countOfAsterisk == 1 || countOfAsterisk == 0 {
 					if strings.Contains(string_what_lower, "*") {
 						for i := 0; i < countOfAsterisk; i++ {
 							for char := 'a'; char <= 'z'; char++ {
