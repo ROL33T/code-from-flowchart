@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"sort"
 	"strings"
 	"time"
 )
@@ -47,102 +48,100 @@ func generateRandomString(length int) string {
 	return sb.String()
 }
 
-func findMaxMinCounts(str, sub string) (maxCount, minCount int) {
-	startIndex := 0
-	maxCount = 0
-	minCount = len(str)
-
-	for {
-		index := strings.Index(str[startIndex:], sub)
-		if index == -1 {
-			break
-		}
-
-		count := strings.Count(str[startIndex:], sub)
-		if count > maxCount {
-			maxCount = count
-		}
-
-		if count < minCount {
-			minCount = count
-		}
-
-		startIndex += index + len(sub)
-	}
-
-	return maxCount, minCount
+func getInputString() string {
+	fmt.Print("กรุณาใส่ String 5 ตัวเท่านั้น | end จบ: ")
+	var inputString string
+	fmt.Scan(&inputString)
+	return inputString
 }
 
-func findDuplicateCharacters(input string) map[rune]int {
-	counts := make(map[rune]int)
-	for _, char := range input {
-		counts[char]++
+func validateInputString(inputString string) bool {
+	if len(inputString) != 5 {
+		return false
 	}
-	return counts
+
+	for _, char := range inputString {
+		if (char < 'a' || char > 'z') && char != '*' {
+			return false
+		}
+	}
+
+	return true
+}
+
+func replaceAsterisk(inputString string) string {
+	countOfAsterisk := strings.Count(inputString, "*")
+
+	for i := 0; i < countOfAsterisk; i++ {
+		fmt.Printf("กรอกค่าที่จะแทนที่ * ที่ตำแหน่งที่ %d: ", i+1)
+		var replacement string
+		fmt.Scan(&replacement)
+
+		if replacement >= "a" && replacement <= "z" {
+			inputString = strings.Replace(inputString, "*", replacement, 1)
+		} else {
+			fmt.Println("A-Z เท่านั้นพี่ชาย")
+			time.Sleep(2 * time.Second)
+			return ""
+		}
+	}
+
+	return inputString
 }
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-
+	ARRAY_MAX_TO_MIN := map[string]int{}
 	randomString := generateRandomString(randomStringLength)
-	printf("ตัวอักษรทั้งหมด:\n[%s] \n", randomString)
+	fmt.Printf("ตัวอักษรทั้งหมด:\n[%s]\n", randomString)
 
-	println("กรุณาใส่ String 5 ตัวเท่านั้น |  : ")
-	string_What := ""
-	if _, err := fmt.Scan(&string_What); err != nil {
-		println("ไม่สามารถอ่านค่า Input String ได้")
-		Wait(2 * time.Second)
-		return
-	}
+	for {
+		inputString := getInputString()
+		stringWhatLower := strings.ToLower(inputString)
 
-	string_what_lower := strings.ToLower(string_What)
-
-	if len(string_What) == 5 {
-
-		if string_what_lower >= "a" || string_what_lower <= "z" || string_what_lower == "*" {
-			countOfAsterisk := strings.Count(string_what_lower, "*")
-
-			if strings.Contains(string_what_lower, "*") {
-				for i := 0; i < countOfAsterisk; i++ {
-					fmt.Printf("กรอกค่าที่จะแทนที่ * ที่ตำแหน่งที่ %d: ", i+1)
-					var replacement string
-					if _, err := fmt.Scan(&replacement); err != nil {
-						println("ไม่สามารถอ่านค่า Input String ได้")
-						return
-					}
-					if replacement >= "a" && replacement <= "z" {
-						string_what_lower = strings.Replace(string_what_lower, "*", replacement, 1)
-
-					} else {
-						println("A-Z เท่านั้นพี่ชาย")
-						Wait(2 * time.Second)
-						return
-					}
-
-				}
-			}
-
-			string_count := strings.Count(randomString, string_what_lower)
-
-			if string_count > 0 {
-				printf("พบ %s %d จำนวน \n", string_what_lower, string_count)
-
-				maxCount, minCount := findMaxMinCounts(randomString, string_what_lower)
-				printf("มากที่สุด: %d\n", maxCount)
-				printf("น้อยที่สุด: %d\n", minCount)
-			} else {
-				printf("ไม่พบ %s string นี้ \n", string_what_lower)
-			}
-		} else {
-			println("A-Z และ * เท่านั้นพี่ชาย")
+		if stringWhatLower == "end" {
+			println("จบการทำงาน")
 			Wait(2 * time.Second)
 			return
 		}
 
-	} else {
-		println("กรุณากรอกให้ครบ 5 ตัว")
-		Wait(2 * time.Second)
-		return
+		if !validateInputString(stringWhatLower) {
+			println("กรุณากรอกให้ครบ 5 ตัว และเป็น A-Z หรือ * เท่านั้นพี่ชาย")
+			Wait(2 * time.Second)
+			return
+		}
+
+		stringWhatLower = replaceAsterisk(stringWhatLower)
+
+		if stringWhatLower == "" {
+			Wait(2 * time.Second)
+			return
+		}
+
+		stringCount := strings.Count(randomString, stringWhatLower)
+
+		if stringCount > 0 {
+			ARRAY_MAX_TO_MIN[stringWhatLower]++
+			printf("พบ %s %d จำนวน\n", stringWhatLower, stringCount)
+
+			// หา key ใน map ที่เรียงลำดับตามค่า value จากมากไปน้อย
+			sortedKeys := make([]string, 0, len(ARRAY_MAX_TO_MIN))
+			for key := range ARRAY_MAX_TO_MIN {
+				sortedKeys = append(sortedKeys, key)
+			}
+
+			sort.SliceStable(sortedKeys, func(i, j int) bool {
+				return ARRAY_MAX_TO_MIN[sortedKeys[i]] > ARRAY_MAX_TO_MIN[sortedKeys[j]]
+			})
+
+			println("เรียงลำดับตามค่าจากมากไปน้อย:")
+			for _, key := range sortedKeys {
+				value := ARRAY_MAX_TO_MIN[key]
+				printf("%s: %d\n", key, value)
+			}
+		} else {
+			printf("ไม่พบ %s string นี้\n", stringWhatLower)
+		}
 	}
 	Wait(5 * time.Second)
 }
