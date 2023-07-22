@@ -66,6 +66,12 @@ func main() {
 
 		string_what_lower := strings.ToLower(string_What)
 
+		if string_what_lower >= "0" && string_what_lower <= "9" {
+			println("A-Z และ * เท่านั้นพี่ชาย")
+			Wait(2 * time.Second)
+			return
+		}
+
 		if string_what_lower == "end" {
 			println("จบการทำงาน")
 			Wait(2 * time.Second)
