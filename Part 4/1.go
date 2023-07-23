@@ -70,7 +70,7 @@ func countCharacters_A(s, substr string) int {
 }
 
 const (
-	randomStringChars  = "aa"
+	randomStringChars  = "abcdefghijklmnopqrstuvwxyz"
 	randomStringLength = 1000
 )
 
@@ -121,7 +121,7 @@ func main() {
 			printf("เจอ %s ทั้งหมด %d\n", string_lower_find_one, count_INDEX)
 
 			if string_count > 0 {
-				printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_find_one, startIndex)
+				printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_find_one, count_INDEX)
 				Wait(2 * time.Second)
 
 			} else {
@@ -157,6 +157,7 @@ func main() {
 		if len(string_lower_A) == 5 {
 			string_count := countCharacters_A(randomString, string_lower_A)
 			startIndex := 0
+			CountIndex := 0
 			for {
 				index := strings.Index(randomString[startIndex:], string_lower_A)
 				if index == -1 {
@@ -164,11 +165,11 @@ func main() {
 				}
 
 				printf("พบคำว่า %s ที่ตำแหน่งที่: %d\n", string_lower_A, startIndex+index)
-
+				CountIndex++
 				startIndex += index + len(string_lower_A)
 			}
 			if string_count > 0 {
-				printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_A, string_count)
+				printf("พบ %s จำนวนทั้งหมด: %d\n", string_lower_A, CountIndex)
 			} else {
 				printf("ไม่พบ %s", string_lower_A)
 			}
